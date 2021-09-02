@@ -26,7 +26,7 @@ class Piplines(object):
         # Dataset configs:
         self.data_confs = Configs.Data_Configs(
             self.dataset_root, self.dataset_name, self.stage, self.mode).configuring()
-        print 'data_confs', self.data_confs
+        print( 'data_confs', self.data_confs)
         
         # Model configs:
         self.model_confs = Configs.Model_Configs(
@@ -38,12 +38,12 @@ class Piplines(object):
         if torch.cuda.is_available():
             self.net = self.net.cuda()
             #self.net = torch.nn.DataParallel(self.net).cuda()
-        print self.net
+        print( self.net)
         
         if 'trainval' in self.mode:
             # Solver configs:
             self.solver_confs = Configs.Solver_Configs(self.dataset_name, self.data_loaders, self.data_sizes, self.net, self.stage, self.mode, self.data_confs).configuring()
-            print 'solver_confs', self.solver_confs
+            print ('solver_confs', self.solver_confs)
 
             self.solver = Solver.Solver(self.net, self.model_confs, self.solver_confs)
         
